@@ -20,10 +20,9 @@
             </MenuItem>
             <MenuItem Header="Средсва" Click="GoSetingsPage">
                 <MenuItem Header="Параметры" Click="GoSetingsPage"/>
-                <MenuItem Header="Режимы звонков">
+                <MenuItem Header="Режимы звонков" Name="ModesCollector">
                     <TextBox Text="A"/>
-                    <TextBox Text="ba"/>
-                    <Separator />
+                    <Separator/>
                     <MenuItem Header="Добавить режим" Click="AddCallingMode"/>
                 </MenuItem>
             </MenuItem>

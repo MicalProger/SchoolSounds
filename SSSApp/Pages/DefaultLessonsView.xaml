@@ -34,7 +34,7 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Background="{Binding LsColor}" Width="580">
-                            <CheckBox Content="Не стандартное время урока" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5" IsChecked="{Binding IsDefaultLsTime}"/>
+                            <CheckBox Content="Cтандартное время урока" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5" IsChecked="{Binding IsDefaultLsTime}"/>
                             <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
                                 <TextBlock Text="{Binding Name}"  FontSize="23"/>
                                 <StackPanel Orientation="Horizontal">

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using System.Windows;
-using System.Windows.Navigation;
+using System.Windows.Controls;
 using System.Windows.Threading;
 
 namespace SSSApp
@@ -24,7 +24,7 @@ namespace SSSApp
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += UpdateWatch;
             timer.Start();
-            
+
         }
 
         private void UpdateWatch(object sender, EventArgs e)
@@ -45,11 +45,12 @@ namespace SSSApp
 
         private void GoSetingsPage(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Pages.SettingsPage());
+            if ((e.Source as MenuItem).Header == "Средства")
+                MainFrame.Navigate(new Pages.SettingsPage());
         }
         private void AddCallingMode(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("AddedPreset");
+            ModesCollector.Items.Insert(ModesCollector.Items.Count - 2, new TextBox() { Text = "Новый режим" + (ModesCollector.Items.Count - 1) });
         }
     }
 }

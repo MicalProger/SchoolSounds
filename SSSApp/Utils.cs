@@ -6,6 +6,10 @@ namespace SSSApp
 {
     static class Utils
     {
+        public static string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+
+
         public static Dictionary<int, string> WeekDays = new Dictionary<int, string>() { { 0, "Понедельник" }, { 1, "Вторник" }, { 2, "Среда" },
             { 3, "Четверг" }, { 4, "Пятница" }, { 5, "Суббота" }, { 6, "Воскресенье" } };
         public static List<int> MuteList;
