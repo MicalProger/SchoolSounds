@@ -1,0 +1,59 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SSSApp.Pages"
+      xmlns:SSSApp="clr-namespace:SSSApp" x:Class="SSSApp.Pages.DefaultLessonsView"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="650"
+      Title="DefaultLessonsView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <DockPanel LastChildFill="True">
+                    
+            <Expander Header="Игнорирование" DockPanel.Dock="Bottom">
+                <StackPanel>
+                    <RadioButton Click="ResetMuteMode" Margin="5" Content="Активно всегда" IsChecked="True"/>
+                    <RadioButton Click="ResetMuteMode" Margin="5" Content="Активно в определенные дни"/>
+                    <WrapPanel Orientation="Horizontal" IsEnabled="False" Name="WBCollector">
+                        <CheckBox Click="UpdateDayMute" IsChecked="True" Content="Понедельник" Margin="5"/>
+                        <CheckBox Click="UpdateDayMute" IsChecked="True" Content="Вторник" Margin="5"/>
+                        <CheckBox Click="UpdateDayMute" IsChecked="True" Content="Среда" Margin="5"/>
+                        <CheckBox Click="UpdateDayMute" IsChecked="True" Content="Четверг" Margin="5"/>
+                        <CheckBox Click="UpdateDayMute" IsChecked="True" Content="Пятница" Margin="5"/>
+                        <CheckBox Click="UpdateDayMute" IsChecked="True" Content="Суббота" Margin="5"/>
+                        <CheckBox Click="UpdateDayMute" IsChecked="True" Content="Воскресенье" Margin="5"/>
+                    </WrapPanel>
+                </StackPanel>
+            </Expander>
+            <ListBox Margin="5,5,5,5" x:Name="LsLB" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionMode="Extended" DockPanel.Dock="Top">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel Background="{Binding LsColor}" Width="580">
+                            <CheckBox Content="Не стандартное время урока" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="5" IsChecked="{Binding IsDefaultLsTime}"/>
+                            <StackPanel Orientation="Vertical" DockPanel.Dock="Left">
+                                <TextBlock Text="{Binding Name}"  FontSize="23"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock FontSize="15" Text="Время начала:" Margin="5"/>
+                                    <TextBox FontSize="15" Text="{Binding STimeStr}" Margin="5"/>
+                                    <TextBlock FontSize="15" Text="Время конца:" Margin="5"/>
+                                    <TextBox FontSize="15" Text="{Binding ETimeStr}" Margin="5"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+
+
+        <DockPanel Grid.Row="1" LastChildFill="False">
+            <Button Margin="5" Padding="5" Content="Добавить урок" DockPanel.Dock="Right" Click="LsAdd"/>
+            <Button Margin="5" Padding="5" Content="Удалить урок" DockPanel.Dock="Left" Click="LsRemove"/>
+        </DockPanel>
+    </Grid>
+</Page>
