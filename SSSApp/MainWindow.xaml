@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SSSApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="650
-        " ResizeMode="CanMinimize">
+        Title="MainWindow" Height="750" Width="650
+        " ResizeMode="CanMinimize" Closing="Window_Closing">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -21,7 +21,6 @@
             <MenuItem Header="Средсва" Click="GoSetingsPage">
                 <MenuItem Header="Параметры" Click="GoSetingsPage"/>
                 <MenuItem Header="Режимы звонков" Name="ModesCollector">
-                    <TextBox Text="A"/>
                     <Separator/>
                     <MenuItem Header="Добавить режим" Click="AddCallingMode"/>
                 </MenuItem>

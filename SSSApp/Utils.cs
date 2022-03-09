@@ -6,15 +6,15 @@ namespace SSSApp
 {
     static class Utils
     {
-        public static string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        public static string AppDataPath = /*Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)*/@"C:\Users\mmm60\Desktop\AppDatas\settings.ssss";
 
-
+        public static AppSettings AppSettings;
 
         public static Dictionary<int, string> WeekDays = new Dictionary<int, string>() { { 0, "Понедельник" }, { 1, "Вторник" }, { 2, "Среда" },
             { 3, "Четверг" }, { 4, "Пятница" }, { 5, "Суббота" }, { 6, "Воскресенье" } };
         public static List<int> MuteList;
         public static bool MuteEnable;
-        public static List<CallableLesson> CurrentLessons { get; set; }
+        public static List<CallableLesson> CurrentLessons => AppSettings.CurrentMode.Lessons;
 
         public static TimeSpan CurrentTime => DateTime.Now.TimeOfDay;
 

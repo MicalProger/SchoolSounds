@@ -39,3 +39,6 @@ C:\Users\mmm60\Projects\VIsualStudioProjects\SchoolSounds\SSSApp\obj\Debug\SSSAp
 C:\Users\mmm60\Projects\VIsualStudioProjects\SchoolSounds\SSSApp\obj\Debug\SSSApp.csproj.CoreCompileInputs.cache
 C:\Users\mmm60\Projects\VIsualStudioProjects\SchoolSounds\SSSApp\obj\Debug\SSSApp.exe
 C:\Users\mmm60\Projects\VIsualStudioProjects\SchoolSounds\SSSApp\obj\Debug\SSSApp.pdb
+C:\Users\mmm60\Projects\VIsualStudioProjects\SchoolSounds\SSSApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\mmm60\Projects\VIsualStudioProjects\SchoolSounds\SSSApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\mmm60\Projects\VIsualStudioProjects\SchoolSounds\SSSApp\obj\Debug\SSSApp.csproj.CopyComplete

@@ -9,8 +9,8 @@ namespace SSSApp
     internal class CallingMode
     {
         public string Name { get; set; }
-        public List<CallableLesson> Lessons { get; set; }
-        public static List<int> MuteList;
-        public static bool MuteEnable;
+        public List<CallableLesson> Lessons { get; set; } = new List<CallableLesson>();
+        public List<int> MuteList;
+        public bool MuteEnable;
     }
 }

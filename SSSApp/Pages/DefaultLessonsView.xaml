@@ -17,8 +17,8 @@
                     
             <Expander Header="Игнорирование" DockPanel.Dock="Bottom">
                 <StackPanel>
-                    <RadioButton Click="ResetMuteMode" Margin="5" Content="Активно всегда" IsChecked="True"/>
-                    <RadioButton Click="ResetMuteMode" Margin="5" Content="Активно в определенные дни"/>
+                    <RadioButton Click="ResetMuteMode" Margin="5" Content="Активно всегда" IsChecked="True" Name="UnMuteRB"/>
+                    <RadioButton Click="ResetMuteMode" Margin="5" Content="Активно в определенные дни" Name="MuteRB"/>
                     <WrapPanel Orientation="Horizontal" IsEnabled="False" Name="WBCollector">
                         <CheckBox Click="UpdateDayMute" IsChecked="True" Content="Понедельник" Margin="5"/>
                         <CheckBox Click="UpdateDayMute" IsChecked="True" Content="Вторник" Margin="5"/>

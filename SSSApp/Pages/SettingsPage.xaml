@@ -12,12 +12,10 @@
         <StackPanel>
             <Button Content="Назад" Margin="5" Padding="5" HorizontalAlignment="Left" Click="Button_Click"/>
             <TextBlock Text="Музыка звонка" Margin="5" ToolTip="Поддерживаются форматы .wav и .mp3"/>
-            <TextBox Text="{Binding CallMisic}" Margin="5" TextWrapping="Wrap"/>
+            <TextBox Text="{Binding CallingMusic}" Margin="5" TextWrapping="Wrap"/>
             <Button Content="Выбрать" Margin="5" Padding="5" HorizontalAlignment="Left"/>
             <TextBlock Text="Длительность урока" Margin="5" ToolTip="В целых минутах"/>
             <TextBox Text="{Binding LsDuration}" Margin="5"/>
-            <TextBlock Text="" Margin="5"/>
-            <TextBox Text="{Binding a}" Margin="5"/>
         </StackPanel>
     </Grid>
 </Page>

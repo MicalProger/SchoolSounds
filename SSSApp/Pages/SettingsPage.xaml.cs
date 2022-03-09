@@ -23,6 +23,7 @@ namespace SSSApp.Pages
         public SettingsPage()
         {
             InitializeComponent();
+            this.DataContext = Utils.AppSettings;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
