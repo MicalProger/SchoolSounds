@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace SSSApp
 {
     static class Utils
     {
-        public static string AppDataPath = /*Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)*/@"C:\Users\mmm60\Desktop\AppDatas\settings.ssss";
+
+        public static string SettingsPath => Path.Combine(Utils.AppDataPath, "settings.json");
+
+        public static string AppDataPath => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "sss") /*@"C:\Users\mmm60\Desktop\AppDatas\settings.ssss"*/;
 
         public static AppSettings AppSettings;
 

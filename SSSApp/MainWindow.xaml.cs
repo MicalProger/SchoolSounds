@@ -1,13 +1,16 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace SSSApp
@@ -19,32 +22,52 @@ namespace SSSApp
     {
         public MainWindow()
         {
-            InitializeComponent();
-            Utils.AppSettings = JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(Utils.AppDataPath));
-            Utils.MuteList = new List<int> { };
-            if (Utils.AppSettings.CallingModes != null && Utils.AppSettings.CallingModes.Count > 0)
+            try
             {
-                foreach (var mode in Utils.AppSettings.CallingModes)
+                InitializeComponent();
+                Utils.AppSettings = JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(Utils.SettingsPath));
+                Utils.MuteList = new List<int> { };
+                if (Utils.AppSettings.CallingModes != null && Utils.AppSettings.CallingModes.Count > 0)
                 {
-                    var newTB = new TextBox();
-                    newTB.DataContext = mode;
-                    Binding binding = new Binding("Name");
-                    newTB.SetBinding(TextBox.TextProperty, binding);
-                    newTB.GotFocus += ChangeMode;
-                    ModesCollector.Items.Insert(ModesCollector.Items.Count - 2, newTB);
-                }
-                MainFrame.Navigate(new Pages.DefaultLessonsView(Utils.CurrentLessons));
-            }
-            else
-                Utils.AppSettings.CallingModes = new List<CallingMode>();
-            DispatcherTimer timer = new DispatcherTimer();
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += UpdateWatch;
-            timer.Start();
+                    foreach (var mode in Utils.AppSettings.CallingModes)
+                    {
+                        var newTB = new TextBox();
+                        newTB.DataContext = mode;
+                        Binding binding = new Binding("Name");
+                        newTB.SetBinding(TextBox.TextProperty, binding);
+                        newTB.MouseDown += ChangeMode;
+                        ModesCollector.Items.Insert(ModesCollector.Items.Count - 2, newTB);
+                
 
+
+                    }
+                    MainFrame.Navigate(new Pages.DefaultLessonsView(Utils.CurrentLessons));
+                }
+                else
+                    Utils.AppSettings.CallingModes = new List<CallingMode>();
+                DispatcherTimer timer = new DispatcherTimer();
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("ru-RU");
+                timer.Interval = TimeSpan.FromSeconds(1);
+                timer.Tick += UpdateWatch;
+                timer.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+        public void Call()
+        {
+            MediaPlayer player = new MediaPlayer();
+            player.Open(new Uri(Utils.AppSettings.CallingMusic));
+            player.Play();
         }
 
+        public async void CallAsync()
+        {
+            await Task.Run(() => Call());
+        }
         private void UpdateWatch(object sender, EventArgs e)
         {
             WatchTB.Text = Utils.CurrentTime.ToString("hh':'mm':'ss");
@@ -55,11 +78,18 @@ namespace SSSApp
                 var nextDelta = Utils.NextCallTime - Utils.CurrentTime;
                 int dow = (int)(DateTime.Now.DayOfWeek + 5) % 7;
                 if (!Utils.MuteList.Contains(dow))
-                    if (nextDelta.Seconds == 0)
+                    if (nextDelta.TotalMilliseconds < 1000)
                     {
-                        //MediaPlayer player = new MediaPlayer();
-                        //player.Open(new Uri(""));
-                        //player.Play();
+                        if (!string.IsNullOrWhiteSpace(Utils.AppSettings.CallingMusic))
+                            try
+                            {
+                                CallAsync();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message);
+                            }
+
                     }
             }
 
@@ -90,7 +120,73 @@ namespace SSSApp
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            File.WriteAllText(Utils.AppDataPath, JsonConvert.SerializeObject(Utils.AppSettings, Formatting.Indented));
+            try
+            {
+                File.WriteAllText(Utils.SettingsPath, JsonConvert.SerializeObject(Utils.AppSettings, Formatting.Indented));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
+
+        private void SaveSt(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "настройки (.json)|*.json";
+
+            if (save.ShowDialog().GetValueOrDefault())
+            {
+                File.WriteAllText(save.FileName, JsonConvert.SerializeObject(Utils.AppSettings, Formatting.Indented));
+            }
+        }
+        private void ImportSt(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "настройки (.json)|*.json";
+            if (open.ShowDialog().GetValueOrDefault())
+            {
+                var preSt = JsonConvert.DeserializeObject<AppSettings>(File.ReadAllText(open.FileName));
+                if(preSt != null)
+                {
+                    Utils.AppSettings = preSt;
+                    if (Utils.AppSettings.CallingModes != null && Utils.AppSettings.CallingModes.Count > 0)
+                    {
+                        foreach (var mode in Utils.AppSettings.CallingModes)
+                        {
+                            var newTB = new TextBox();
+                            newTB.DataContext = mode;
+                            Binding binding = new Binding("Name");
+                            newTB.SetBinding(TextBox.TextProperty, binding);
+                            newTB.GotFocus += ChangeMode;
+                            ModesCollector.Items.Insert(ModesCollector.Items.Count - 2, newTB);
+                        }
+                        MainFrame.Navigate(new Pages.DefaultLessonsView(Utils.CurrentLessons));
+                    }
+                    else
+                        Utils.AppSettings.CallingModes = new List<CallingMode>();
+                }
+
+            }
+        }
+        private void OnPlay(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog open = new OpenFileDialog();
+            open.Filter = ".wav|*.wav|.mp3|*.mp3";
+            if (open.ShowDialog().GetValueOrDefault())
+            {
+                try
+                {
+                    MediaPlayer player = new MediaPlayer();
+                    player.Open(new Uri(open.FileName));
+                    player.Play();
+                }
+                catch
+                {
+                    MessageBox.Show("Усп. Какая то ошибка. Проверьте формат файлов.");
+                }
+            }
+        }
+
     }
 }

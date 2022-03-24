@@ -1,0 +1,114 @@
+{
+  "CurrentModeId": 1,
+  "CallingModes": [
+    {
+      "MuteList": [
+        1,
+        2
+      ],
+      "MuteEnable": false,
+      "Name": "Новый 3",
+      "Lessons": [
+        {
+          "STime": "16:21:00",
+          "ETime": "17:06:00",
+          "IsDefaultLsTime": true,
+          "LsColor": "#FFFFFFFF",
+          "Id": 1,
+          "Name": "1-й урок",
+          "STimeStr": "16:21",
+          "ETimeStr": "17:06"
+        },
+        {
+          "STime": "-00:45:00",
+          "ETime": "00:00:00",
+          "IsDefaultLsTime": true,
+          "LsColor": "#FFFFFF00",
+          "Id": 2,
+          "Name": "2-й урок",
+          "STimeStr": "00:45",
+          "ETimeStr": "00:00"
+        },
+        {
+          "STime": "-00:45:00",
+          "ETime": "00:00:00",
+          "IsDefaultLsTime": true,
+          "LsColor": "#FFFFFF00",
+          "Id": 3,
+          "Name": "3-й урок",
+          "STimeStr": "00:45",
+          "ETimeStr": "00:00"
+        },
+        {
+          "STime": "-00:45:00",
+          "ETime": "00:00:00",
+          "IsDefaultLsTime": true,
+          "LsColor": "#FFFFFF00",
+          "Id": 4,
+          "Name": "4-й урок",
+          "STimeStr": "00:45",
+          "ETimeStr": "00:00"
+        },
+        {
+          "STime": "-00:45:00",
+          "ETime": "00:00:00",
+          "IsDefaultLsTime": true,
+          "LsColor": "#FFFFFF00",
+          "Id": 5,
+          "Name": "5-й урок",
+          "STimeStr": "00:45",
+          "ETimeStr": "00:00"
+        },
+        {
+          "STime": "-00:45:00",
+          "ETime": "00:00:00",
+          "IsDefaultLsTime": true,
+          "LsColor": "#FFFFFF00",
+          "Id": 6,
+          "Name": "6-й урок",
+          "STimeStr": "00:45",
+          "ETimeStr": "00:00"
+        },
+        {
+          "STime": "-00:45:00",
+          "ETime": "00:00:00",
+          "IsDefaultLsTime": true,
+          "LsColor": "#FFFFFF00",
+          "Id": 7,
+          "Name": "7-й урок",
+          "STimeStr": "00:45",
+          "ETimeStr": "00:00"
+        }
+      ]
+    },
+    {
+      "MuteList": [],
+      "MuteEnable": false,
+      "Name": "Новый режим2",
+      "Lessons": [
+        {
+          "STime": "16:24:00",
+          "ETime": "16:25:00",
+          "IsDefaultLsTime": false,
+          "LsColor": "#FFFFFFFF",
+          "Id": 1,
+          "Name": "1-й урок",
+          "STimeStr": "16:24",
+          "ETimeStr": "16:25"
+        },
+        {
+          "STime": "-00:45:00",
+          "ETime": "00:00:00",
+          "IsDefaultLsTime": true,
+          "LsColor": "#FFFFFF00",
+          "Id": 2,
+          "Name": "2-й урок",
+          "STimeStr": "00:45",
+          "ETimeStr": "00:00"
+        }
+      ]
+    }
+  ],
+  "LsDuration": 50,
+  "CallingMusic": "C:\\Users\\mmm60\\Downloads\\plyus_org-z_uk-u_edomleniya-2.mp3"
+}

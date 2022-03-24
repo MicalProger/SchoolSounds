@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <DockPanel LastChildFill="True">
                     
-            <Expander Header="Игнорирование" DockPanel.Dock="Bottom">
+            <Expander Header="Повтор звонков" DockPanel.Dock="Bottom">
                 <StackPanel>
                     <RadioButton Click="ResetMuteMode" Margin="5" Content="Активно всегда" IsChecked="True" Name="UnMuteRB"/>
                     <RadioButton Click="ResetMuteMode" Margin="5" Content="Активно в определенные дни" Name="MuteRB"/>
@@ -30,7 +30,7 @@
                     </WrapPanel>
                 </StackPanel>
             </Expander>
-            <ListBox Margin="5,5,5,5" x:Name="LsLB" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionMode="Extended" DockPanel.Dock="Top">
+            <ListBox Margin="5,5,5,5" x:Name="LsLB" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionMode="Extended" DockPanel.Dock="Top" Background="Transparent">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel Background="{Binding LsColor}" Width="580">

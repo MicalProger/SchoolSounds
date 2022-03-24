@@ -33,7 +33,7 @@ namespace SSSApp
             {
                 if (TimeSpan.TryParse(value, out STime) && IsDefaultLsTime)
                 {                    
-                    ETime = STime + TimeSpan.FromMinutes(45);
+                    ETime = STime + TimeSpan.FromMinutes(Utils.AppSettings.LsDuration);
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ETimeStr)));
                 }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LsColor)));
@@ -47,7 +47,7 @@ namespace SSSApp
             {
                 if (TimeSpan.TryParse(value, out ETime) && IsDefaultLsTime)
                 {
-                    STime = ETime - TimeSpan.FromMinutes(45);
+                    STime = ETime - TimeSpan.FromMinutes(Utils.AppSettings.LsDuration);
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(STimeStr)));
                 }
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(LsColor)));

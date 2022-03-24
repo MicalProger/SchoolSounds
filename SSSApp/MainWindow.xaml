@@ -6,17 +6,18 @@
         xmlns:local="clr-namespace:SSSApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="650
-        " ResizeMode="CanMinimize" Closing="Window_Closing">
-    <Grid>
+        " ResizeMode="CanMinimize" Closing="Window_Closing" Icon="Pages/images.ico">
+    <Grid  Background="{StaticResource ColorBase.TotalBackground}">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition/>
             <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" Background="{StaticResource ColorBase.Main.Background}">
             <MenuItem Header="Файл">
-                <MenuItem Header="Сохранение расписания"/>
-                <MenuItem Header="Проиграть запись"/>
+                <MenuItem Header="Экспортировать настройки" Click="SaveSt"/>
+                <MenuItem Header="Импортировать настройки" Click="ImportSt"/>
+                <MenuItem Header="Проиграть запись" Click="OnPlay"/>
             </MenuItem>
             <MenuItem Header="Средсва" Click="GoSetingsPage">
                 <MenuItem Header="Параметры" Click="GoSetingsPage"/>
